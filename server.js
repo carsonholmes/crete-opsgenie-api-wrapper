@@ -11,14 +11,49 @@ console.log("Starting server...");
 var config = require('./config');
 console.log("Configuration loaded");
 
-// Test web services to see if JSON or String work best for return values
-app.get('/json', function (req, res) {
-    let result = {"voice": "1-3109228402"}
-    res.send(result)
+var api = require(('./ops-genie-api'))
+
+// web service per team
+app.get('/helpdesk', function (req, res) {
+    api.getTeamOnCallNumber("Help Desk", (phoneNumber)=> {
+        res.send(phoneNumber)
+    })
 });
 
-app.get('/text', function (req, res) {
-    let result = "1-3109228402"
+app.get('/network', function (req, res) {
+    api.getTeamOnCallNumber("Network", (phoneNumber)=> {
+        res.send(phoneNumber)
+    })
+});
+
+app.get('/ibmi', function (req, res) {
+    api.getTeamOnCallNumber("IBM i", (phoneNumber)=> {
+        res.send(phoneNumber)
+    })
+});
+
+app.get('/windows', function (req, res) {
+    api.getTeamOnCallNumber("Windows", (phoneNumber)=> {
+        res.send(phoneNumber)
+    })
+});
+
+app.get('/sql', function (req, res) {
+    api.getTeamOnCallNumber("SQL", (phoneNumber)=> {
+        res.send(phoneNumber)
+    })
+});
+
+app.get('/sharepoint', function (req, res) {
+    api.getTeamOnCallNumber("SharePoint", (phoneNumber)=> {
+        res.send(phoneNumber)
+    })
+});
+
+// web service for testing
+app.get('/test', function (req, res) {
+    //let result = "1-3109228402"  //Carson's phone number
+    let result = "1-2108708381"  //Lance's phone number
     res.send(result)
 });
 
