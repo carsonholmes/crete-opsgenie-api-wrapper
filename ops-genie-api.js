@@ -15,6 +15,8 @@ module.exports = {
 
 //Supporting Functions
 const cbGetSchedules = (error, result) => {
+    console.log("getSchedule")
+    console.log(result.data)
     if (!error) {
         for (let s in result.data)
             if (result.data[s].ownerTeam.name === teamName) {
@@ -26,6 +28,8 @@ const cbGetSchedules = (error, result) => {
 }
 
 const cbGetOnCall = (error, result) => {
+    console.log("getOnCal")
+    console.log(result.data)
     if (!error) {
         if (result.data.onCallParticipants.length > 0) {
             //get contact details for the person who is on call
@@ -40,12 +44,18 @@ const cbGetOnCall = (error, result) => {
 }
 
 const cbGetOperator = (error, result) => {
+    console.log("getOperator")
+    console.log(result.data)
     if (!error) {
-        for (let c in result.data)
+        let found = false;
+        for (let c in result.data) {
             if (result.data[c].method === 'voice') {
                 //callback with the voice phone number
+                found = true;
                 cbFunc(result.data[c].to)
             }
+        }
+        if (!found) cbFunc("1-4024759521")  //default to main line
     }
     else console.log("Error: ", error)
 }
