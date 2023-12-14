@@ -52,8 +52,8 @@ app.get('/sharepoint', function (req, res) {
 
 // web service for testing
 app.get('/test', function (req, res) {
-    //let result = "1-3109228402"  //Carson's phone number
-    let result = "1-2108708381"  //Lance's phone number
+    //let result = "13109228402"  //Carson's phone number
+    let result = "12108708381"  //Lance's phone number
     res.send(result)
 });
 

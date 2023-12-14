@@ -37,7 +37,7 @@ const cbGetOnCall = (error, result) => {
         }
         else {
             console.log('No one on call found for team: ' + teamName)
-            cbFunc("1-4024759521")  //default to main line
+            cbFunc("14024759521")  //default to main line
         }
     }
     else console.log("Error: ", error)
@@ -52,10 +52,10 @@ const cbGetOperator = (error, result) => {
             if (result.data[c].method === 'voice') {
                 //callback with the voice phone number
                 found = true;
-                cbFunc(result.data[c].to)
+                cbFunc(result.data[c].to.replace("-",""))
             }
         }
-        if (!found) cbFunc("1-4024759521")  //default to main line
+        if (!found) cbFunc("14024759521")  //default to main line
     }
     else console.log("Error: ", error)
 }
